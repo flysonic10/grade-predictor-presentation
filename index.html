@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Predicting Final Grade for Developing Data Products</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Predicting Final Grade for Developing Data Products">
+  <meta name="author" content="William Wnekowicz">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Predicting Final Grade for Developing Data Products</h1>
+    <h2></h2>
+    <p>William Wnekowicz<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Overview</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The Developing Data Products course on Coursera has four assignments: 3 quizzes and 1 course project.</p>
+
+<p>The assignments contribute to the final grade as follows:</p>
+
+<ul>
+<li>Quiz 1 - 20%</li>
+<li>Quiz 2 - 20%</li>
+<li>Quiz 3 - 20%</li>
+<li>Course Project - 40%</li>
+</ul>
+
+<p>Furthermore, the course syllabus outlines the following grading thresholds:</p>
+
+<ul>
+<li>&gt;= 70% - Passing</li>
+<li>&gt;= 90% - Passing with Distinction</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Goals</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Our goals are to:</p>
+
+<ol>
+<li>Build an application to help students predict their Course Project scores</li>
+<li>Using known scores and the predicted score, report the final predicted grade for the class</li>
+<li>Report whether the final grade is passing and, if so, whether it merits distinction</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Prediction Model and Calculations</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Our prediction model averages the known quiz scores and using simple multiplication, predicts the Course Project score to be 10% higher.</p>
+
+<pre><code class="r">totalQuizScores &lt;- 80 + 90 + 100
+prediction &lt;- totalQuizScores / 3 * 1.10
+prediction
+</code></pre>
+
+<pre><code>## [1] 99
+</code></pre>
+
+<p>Final grades are then estimated using this prediction and the formula:</p>
+
+<pre><code class="r">finalGrade &lt;- totalQuizScores / 3 * 0.6 + prediction * 0.4
+finalGrade
+</code></pre>
+
+<pre><code>## [1] 93.6
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Going further</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>As a proof of concept, the application currently uses a simple and naive method of estimating course project scores. </p>
+
+<p>A more complex model may be built by:</p>
+
+<ul>
+<li>Collecting data of student scores from past courses</li>
+<li>Fitting a Random Forests or stacked model based on quiz scores</li>
+<li>Repacing the current prediction function with a new prediction function based on the statistical model</li>
+</ul>
+
+<h2>Resources</h2>
+
+<h3>Github Repository - <a href="https://github.com/flysonic10/grade-predictor">https://github.com/flysonic10/grade-predictor</a></h3>
+
+<h3>Demo - <a href="https://will.shinyapps.io/grade-predictor">https://will.shinyapps.io/grade-predictor</a></h3>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Overview'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Goals'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Prediction Model and Calculations'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Going further'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
